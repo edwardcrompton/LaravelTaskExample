@@ -69,6 +69,18 @@
                                 </button>
                             </form>
                         </td>
+
+                        <td>
+                            <form action="{{ url('task/'.$task->id.'/edit') }}" method="POST">
+                                {{ csrf_field() }}
+                                {{ method_field('GET') }}
+
+                                <button type="submit" id="edit-task-{{ $task->id }}" class="btn">
+                                    <i class="fa fa-btn fa-edit"></i>Edit
+                                </button>
+                            </form>
+                        </td>
+
                     </tr>
                 @endforeach
                 </tbody>
