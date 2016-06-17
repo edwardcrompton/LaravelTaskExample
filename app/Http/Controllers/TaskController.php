@@ -86,11 +86,10 @@ class TaskController extends Controller
      */
     public function edit(Request $request, Task $task)
     {
-
         $this->authorize('edit', $task);
 
         return view('tasks.edit', [
-          'tasks' => $task,
+          'task' => $task,
         ]);
     }
 }
