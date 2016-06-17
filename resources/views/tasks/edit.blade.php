@@ -20,6 +20,8 @@
 
             <div class="col-sm-6">
                 <input type="text" name="name" id="task-name" class="form-control">
+                {{ Form::label('name', 'Task') }}
+                
             </div>
         </div>
 
