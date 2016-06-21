@@ -11,17 +11,14 @@
     @include('common.errors')
 
     <!-- New Task Form -->
-    <form action="{{ url('task') }}" method="POST" class="form-horizontal">
-        {{ csrf_field() }}
+    {{ Form::model($task, ['action' => ['TaskController@update', 'task' => $task], 'class' => 'form-horizontal']) }}
 
         <!-- Task Name -->
         <div class="form-group">
-            <label for="task-name" class="col-sm-3 control-label">Task</label>
+            {{ Form::label('name', 'Task', ['class' => 'col-sm-3 control-label']) }}
 
             <div class="col-sm-6">
-                <input type="text" name="name" id="task-name" class="form-control">
-                {{ Form::label('name', 'Task') }}
-                
+                {{ Form::text('name', null, array('class' => 'form-control')) }}
             </div>
         </div>
 
@@ -33,7 +30,7 @@
                 </button>
             </div>
         </div>
-    </form>
+    {{ Form::close() }}
 </div>
 
 @endsection
