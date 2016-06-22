@@ -29,4 +29,11 @@ Route::post('/task/{task}/update', 'TaskController@update');
 
 Route::delete('/task/{task}/delete', 'TaskController@destroy');
 
+// RESTful API endpoint
+// Route group for API versioning
+Route::group(array('prefix' => 'api/v1'), function()
+{
+    Route::resource('task/add', 'TaskRestController@add');
+});
+
 

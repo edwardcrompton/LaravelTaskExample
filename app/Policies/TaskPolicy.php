@@ -13,8 +13,8 @@ class TaskPolicy
     /**
      * Determine if the given user can delete the given task.
      *
-     * @param  User  $user
-     * @param  Task  $task
+     * @param User $user
+     * @param Task $task
      * @return bool
      */
     public function destroy(User $user, Task $task)
