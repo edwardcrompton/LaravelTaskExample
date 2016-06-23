@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Repositories\TaskRepository;
+use Mail;
 
 class TaskController extends Controller
 {
@@ -74,6 +75,11 @@ class TaskController extends Controller
           'name' => $request->name,
         ]);
 
+        // This is pretty useless functionality but it shows the ability to send
+        // an email. It could be improved if tasks had a due date and an email
+        // was sent when the date approached.
+        $this->sendEmailReminder($request->user(), $request->name);
+
         return redirect('/tasks');
     }
 
@@ -111,5 +117,18 @@ class TaskController extends Controller
         return redirect('/tasks');
     }
 
-
+    /**
+     * Send an e-mail reminder to the user.
+     *
+     * @param  Request  $request
+     * @param  int $id
+     * @return Response
+     */
+    public function sendEmailReminder(\App\User $user, $task)
+    {
+        Mail::send(['text' => 'emails.email'], ['user' => $user->name, 'task' => $task], function ($m) use ($user) {
+            $m->from('hello@app.com', 'Hello App');
+            $m->to($user->email, $user->name)->subject('A new task has been created');
+        });
+    }
 }
